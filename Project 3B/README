@@ -1,6 +1,4 @@
 NAME: Anirudh Veeraragavan
-EMAIL: aveeraragavan@g.ucla.edu
-ID: 004767663
 
 lab3b.py
 - Source code for the lab3b executable. Implements three classes: block_tracker, inode_tracker, and directory_tracker which all support a audit_consistency method which prints errors to stdout. Usage is lab3b [csv_file].

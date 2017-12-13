@@ -1,6 +1,5 @@
 # NAME: Anirudh Veeraragavan
-# EMAIL: aveeraragavan@g.ucla.edu
-# ID: 004767663
+
 default: lab0
 
 lab0: lab0.c
@@ -38,7 +37,7 @@ check:
 	@echo "All tests successful"
 
 dist:
-	@tar -cvzf lab0-004767663.tar.gz lab0.c Makefile backtrace.png breakpoint.png README
+	@tar -cvzf lab0-myid.tar.gz lab0.c Makefile backtrace.png breakpoint.png README
 	@echo "Distribution tarball created"
 
 clean:

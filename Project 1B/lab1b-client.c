@@ -1,7 +1,5 @@
 /*
  * NAME: Anirudh Veeraragavan
- * EMAIL: aveeraragavan@g.ucla.edu
- * ID: 004767663
  */
 
 #include <stdio.h>

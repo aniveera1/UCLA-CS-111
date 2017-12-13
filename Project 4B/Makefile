@@ -1,6 +1,4 @@
 # NAME: Anirudh Veeraragavan
-# EMAIL: aveeraragavan@g.ucla.edu
-# ID: 004767663
 
 build: lab4b.c
 	gcc -Wall -lm -Wextra -lmraa -o lab4b lab4b.c;
@@ -24,9 +22,9 @@ check:
 	@echo "Smoke Test Passed"
 
 dist:
-	@tar -cvzf lab4b-004767663.tar.gz lab4b.c Makefile README
+	@tar -cvzf lab4b-myid.tar.gz lab4b.c Makefile README
 	@echo "Distribution tarball created"
 
 clean:
-	@rm -rf Makefile~ lab4b.c~ lab4b lab4b-004767663.tar.gz
+	@rm -rf Makefile~ lab4b.c~ lab4b lab4b-myid.tar.gz
 	@echo "All created files deleted"

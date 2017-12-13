@@ -1,6 +1,4 @@
 # NAME: Anirudh Veeraragavan
-# EMAIL: aveeraragavan@g.ucla.edu
-# ID: 004767663
 
 build: lab2_list.c SortedList.c
 	gcc -o lab2_list -Wall -Wextra -pthread lab2_list.c SortedList.c
@@ -159,8 +157,8 @@ dist:
 	@make
 	@make tests
 	@make graphs
-	@tar -cvzf lab2b-004767663.tar.gz SortedList.h SortedList.c lab2_list.c Makefile lab2b_list.csv profile.out lab2b_1.png lab2b_2.png lab2b_3.png lab2b_4.png lab2b_5.png lab2b.gp README
+	@tar -cvzf lab2b-myid.tar.gz SortedList.h SortedList.c lab2_list.c Makefile lab2b_list.csv profile.out lab2b_1.png lab2b_2.png lab2b_3.png lab2b_4.png lab2b_5.png lab2b.gp README
 
 clean:
-	@rm -f Makefile~ README~ testThreads.sh~ lab2_list lab2b-004767663.tar.gz
+	@rm -f Makefile~ README~ testThreads.sh~ lab2_list lab2b-myid.tar.gz
 	@echo "All created files deleted"

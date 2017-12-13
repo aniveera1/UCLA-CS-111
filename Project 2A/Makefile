@@ -1,6 +1,4 @@
 # NAME: Anirudh Veeraragavan
-# EMAIL: aveeraragavan@g.ucla.edu
-# ID: 004767663
 
 build: lab2_add lab2_list
 
@@ -359,8 +357,8 @@ graphs:
 	@echo "Graphs generated"
 
 dist: clean build tests graphs
-	@tar -cvzf lab2a-004767663.tar.gz lab2_add.c SortedList.h SortedList.c lab2_list.c Makefile lab2_add.csv lab2_list.csv lab2_add-1.png lab2_add-2.png lab2_add-3.png lab2_add-4.png lab2_add-5.png lab2_list-1.png lab2_list-2.png lab2_list-3.png lab2_list-4.png lab2_add.gp lab2_list.gp README
+	@tar -cvzf lab2a-myid.tar.gz lab2_add.c SortedList.h SortedList.c lab2_list.c Makefile lab2_add.csv lab2_list.csv lab2_add-1.png lab2_add-2.png lab2_add-3.png lab2_add-4.png lab2_add-5.png lab2_list-1.png lab2_list-2.png lab2_list-3.png lab2_list-4.png lab2_add.gp lab2_list.gp README
 
 clean:
-	@rm -f lab2_add lab2_list lab2a-004767663.tar.gz
+	@rm -f lab2_add lab2_list lab2a-myid.tar.gz
 	@echo "All created files deleted"

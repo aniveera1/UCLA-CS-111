@@ -1,6 +1,4 @@
 # NAME: Anirudh Veeraragavan
-# EMAIL: aveeraragavan@g.ucla.edu
-# ID: 004767663
 
 default: lab1b-client lab1b-server
 
@@ -17,9 +15,9 @@ lab1b-server: lab1b-server.c
 	@echo "Server executable created"
 
 clean:
-	@rm -f lab1b-client lab1b-server lab1b-004767663.tar.gz *.txt
+	@rm -f lab1b-client lab1b-server lab1b-myid.tar.gz *.txt
 	@echo "All created files deleted"
 
 dist:
-	@tar -cvzf lab1b-004767663.tar.gz lab1b-client.c lab1b-server.c Makefile my.key README
+	@tar -cvzf lab1b-myid.tar.gz lab1b-client.c lab1b-server.c Makefile my.key README
 	@echo "Distribution tarball created"

@@ -1,7 +1,5 @@
 /*
  * NAME: Anirudh Veeraragavan,Rahul Sheth
- * EMAIL: aveeraragavan@g.ucla.edu,rahulssheth@g.ucla.edu
- * ID: 004767663,304779669
  */
 
 #include <sys/types.h>

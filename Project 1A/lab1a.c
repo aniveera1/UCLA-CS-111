@@ -1,7 +1,5 @@
 /*
  * NAME: Anirudh Veeraragavan
- * EMAIL: aniveera1@gmail.com
- * ID: 004767663
  */
 
 #include <termios.h>

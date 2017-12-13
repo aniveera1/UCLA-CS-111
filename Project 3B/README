@@ -1,0 +1,21 @@
+NAME: Anirudh Veeraragavan
+EMAIL: aveeraragavan@g.ucla.edu
+ID: 004767663
+
+lab3b.py
+- Source code for the lab3b executable. Implements three classes: block_tracker, inode_tracker, and directory_tracker which all support a audit_consistency method which prints errors to stdout. Usage is lab3b [csv_file].
+
+Makefile
+- Supports the following targets:
+	default: Builds the lab3b executable
+	dist: Creates the tarball
+	clean: Deletes all generated output
+
+README
+- The file you are currently reading.
+
+Features
+- The executable implements all functionality as required by the spec.
+
+Research
+1) Anon. Retrieved November 23, 2017 from http://www.nongnu.org/ext2-doc/ext2.html

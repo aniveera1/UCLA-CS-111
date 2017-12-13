@@ -1,0 +1,33 @@
+NAME: Anirudh Veeraragavan
+EMAIL: aveeraragavan@g.ucla.edu
+ID: 004767663
+
+Project 1B - Encrypted Network Communication
+
+Included Files
+lab1b-client.c
+- This is the C source code for the lab1b-client executable. It compiles
+cleanly with gcc and supports the options --port=port, --encrypt=filename,
+and --log=filename.
+lab1b-server.c
+- This is the C source code for the lab1b-server executable. It compiles
+cleanly with gcc and supports the options --port=port and --encrypt=filename.
+Makefile
+- This is the make file and supports the options default, which builds both
+executables, client, which builds client executable, server, which builds
+server executable, clean, which removes all created files, and dist, which
+creates the tarball.
+my.key
+- This is the file that contains a sample encryption key.
+README
+- This is the file that you are reading.
+
+Research
+1) Anon. Linux man pages. Retrieved October 15, 2017 from https://linux.die.net/man/
+
+2) Anon.Retrieved October 15, 2017 from http://pubs.opengroup.org/onlinepubs
+
+3) Anon. GNU Manual. Retrieved October 15, 2017 from https://www.gnu.org/software/gnulib/manual/gnulib.html
+
+Features
+- All the functionality as required by the spec should be implemented.

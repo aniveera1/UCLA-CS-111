@@ -1,0 +1,158 @@
+NAME: Anirudh Veeraragavan
+EMAIL: aveeraragavan@g.ucla.edu
+ID: 004767663
+
+Question 2.1.1
+- For my tests I ran the executable multiple times increasing the number of
+  threads by multiples of 2 (1, 2, 4, ... 32) and for each number of threads
+  increasing the number of iterations by multiples of 10 (1, 10, 100, ... 100000).
+  1 thread never fails, and all the other threads consistently starting failing
+  at around 1000 iterations. With more threads they fail even with a fewer amount
+  of iterations. This is because the probability of a collision occuring within the
+  critical section is very low in isolation, and thus it takes many iterations in
+  order for it to start consistently occuring. Thus failure is directly proportional
+  to the number of threads and iterations.  
+- The number of iterations determine how often threads enter the critical section,
+  and as we established above failure is directly proportional to how many times the
+  critical section is entered. Thus with a small number of iterations we do not enter
+  the critical section as often, and so the probability of failure is so low to the
+  point that we seldom see failure.
+
+Question 2.1.2
+- Yield forces the currently executing thread to stop execution and for a context
+  switch to occur enabling another thread to run the critical section. This results
+  in a lot of overhead, as the thread has to be interrupted, the state has to be
+  saved, the next thread has to be loaded, and then it starts execution. All this
+  results in a slower runtime.
+- As mentioned above, the additional time is going to the overhead associated with
+  performing a context switch. Specifically forcing the current thread to stop,
+  saving state, and loading the next thread takes a lot of time.
+- No it is not.
+- The overhead associated with the mandatory context switches will drown out the
+  actual per-operation timings. Any results are primarily going to reflect the
+  increasing costs of context switches, not the actual operations.
+
+Question 2.1.3
+- Thread creation is not a free operation; therefore, total time as a function of
+  iterations can be viewed as total time = thread creation + (avg cost per iteration)
+  times (total number of iterations). As the number of iterations increases, the
+  cost associated with thread creation becomes a smaller proportion of the total time
+  and so we get this behavior of cost per operation decreasing. In reality average
+  cost per operation is not strictly decreasing but rather approaching the actual
+  amount.
+- Extending the analysis from above, if we were to run our program with an infinite
+  number of iterations we would get the proper average cost per operation. Obviously
+  that is not feasible, so our two options are 1) somehow ignore the cost of
+  thread creation or 2) run the program with the max number of threads allowed by
+  our machine to get a good approximation of what the actual avg cost per operation is.
+
+Question 2.1.4
+- With a low number of threads on a multi-core system each thread may get to execute on
+  its own core and thus the synchronization mechanism does not actually have too much
+  work to do. Thus overhead is minimized and each option appears to perform similarily.
+- As the number of threads increase the synchronization mechanism has more work to do
+  and has to deal with more waiting threads while the critical section is in use. This
+  adds more waiting overhead and slows down the program.
+
+Question 2.2.1
+- For sorted lists the cost of mutex operations increases linearly with the number of
+  threads whereas for addition there is a steep cost associated with going from one
+  thread to two threads but afterwards it remained fairly constant. Thus there is a lot
+  more variation with addition due to this steep initial jump whereas for lists it is
+  a steady increase.
+- For sorted lists the graph is linear as the time per mutex-protected operation is
+  proportional to the number of threads. For addition the graph increases linearly
+  initially and then levels off so the curve has a steep slope at first and then little
+  slope.
+- Linked lists have a steady rate of increase and so scale relatively poorly for linked
+  lists. Linked lists have a large critical section due to all the various operations
+  and so with each additional thread a lot more overhead is invoked. Since only one
+  thread can execute within this critical section the overall program is a lot slower.
+  Addition appears to scale better for mutex because the cost per operation increases
+  initially and then levels off with more threads. Thus our curve has a steep increase
+  and then a steady, slow increase. This is because we have a smaller critical section,
+  which leads to less overhead. Thus mutex works better for addition than linked lists.
+
+Question 2.2.2
+- In regards to list operations, spin locks always have a greater than or equal to cost
+  per operation when compared to mutex. They both start off the same but spin locks
+  increases a lot more than mutex locks do as the number of threads increase. This is
+  because as the number of threads increase more threads are going to be spinning at
+  the critical sections, causing more overhead which is why spin locks scale worse
+  than mutex.
+- Both curves increase linearly with the number of threads with mutex increasing less
+  on average than spin locks. The gap between the two curves increases significantly
+  as the number of threads increase, and this is due to the inefficiency of spin locks
+  and the number of CPU cycles it ends up wasting. With more threads this inefficiency
+  is greater and thus the difference is more noticeable.
+
+lab2_add.c
+- The source code for the lab2_add executable which tests how multithreading impacts
+  addition. The usage for this executable is lab2a_add [--threads=#] [--iterations=#]
+  [--yield] [--sync=[smc]].
+
+lab2_list.c
+- The source code for the lab2_list executable which tests how multithreading impacts
+  a shared linked list data structure. The usage for this executable is lab2a_add
+  [--threads=#] [--iterations=#] [--yield=[idl]] [--sync=[ms]].
+
+SortedList.h
+- A provided header file that describes the methods for linked list operations.
+
+SortedList.c
+- The source code that implements the functionality for the methods described in
+  SortedList.h.
+
+Makefile
+- Contains the following targets:
+  build: compiles lab2_add and lab2_list with the -Wall and -Wextra options
+  tests: runs all tests cases to generate output for the CSV files
+  graphs: uses gnuplot to generate the graphs from the CSV files
+  dist: creates the tarball
+  clean: delete all programs and output from Makefile
+
+lab2_add.csv
+- Contains all the results from the test cases for the lab2_add executable.
+
+lab2_list.csv
+- Contains all the results from the test cases for the lab2_list executable.
+
+lab2_add-1.png
+- A graph that shows the number of threads and iterations required to generate failure
+  (with and without yields).
+
+lab2_add-2.png
+- A graph that shows the cost per operation for various number of iterations for 2 and 8
+  threads (with and without yields).
+
+lab2_add-3.png
+- A graph that shows the cost per operation for various number of iterations for 1
+  thread without yields.
+
+lab2_add-4.png
+- A graph that shows the number of threads and iterations required to generate failure
+  with yields for various synchronization methods (none, CAS, mutex, spin).
+
+lab2_add-5.png
+- A graph that shows the cost per operation for various number of threads for various
+  synchronization methods (none, CAS, mutex, spin).
+
+lab2_list-1.png
+- A graph that shows the cost per operation for various number of iterations for raw
+  calculations and corrected calculations.
+
+lab2_list-2.png
+- A graph that shows the number of successful iterations for various number of threads
+  for various types of yields (none, delete, insertion/lookup, deletion/lookup).
+
+lab2_list-3.png
+- A graph that shows the number of successful iterations for 12 threads for various
+  types of yields (delete, insertion, insertion/lookup, deletion/lookup) for various
+  synchronization methods (mutex, spin).
+
+lab2_list-4.png
+- A graph that shows the correct cost per operation for various number of threads for
+  various synchronization methods (mutex, spin).
+
+README
+- The file you are currently reading.

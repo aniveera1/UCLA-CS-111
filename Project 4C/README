@@ -1,0 +1,30 @@
+NAME: Anirudh Veeraragavan
+EMAIL: aveeraragavan@g.ucla.edu
+ID: 004767663
+
+Project 4C - Internet Of Things Security
+
+Included Files
+lab4c_tcp.c
+- This is the C source code for the lab4c_tcp executable. It compiles cleanly with
+  gcc and the usage is lab4c_tcp [--period=#] [--scale=[F,C]] [--log=file] [--id=#]
+  [--host=name] [port #]. It establishes a tcp connection to the specified server.
+lab4c_tls.c
+- This is the C source code for the lab4c_tls executable. It compiles cleanly with
+  gcc and the usage is lab4c_tls [--period=#] [--scale=[F,C]] [--log=file] [--id=#]
+  [--host=name] [port #]. It establishes a tls connection to the specified server.
+Makefile
+- This is the make file and supports the options:
+  default: builds the lab4c_tcp and lab4c_tls executables
+  clean: deletes all generated output
+  dist: creates the deliverable tarball
+README
+- This is the file you are reading.
+
+Research
+1) Anon. Linux man pages. Retrieved December 5, 2017 from https://linux.die.net/man/
+
+2) Anon. OpenSSL man pages. Retrieved December 5, 2017 from https://www.openssl.org/docs/manmaster/man7/ssl.html
+
+Features
+- All the functionality as required by the spec should be implemented.

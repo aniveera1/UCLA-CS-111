@@ -1,0 +1,47 @@
+NAME: Anirudh Veeraragavan
+EMAIL: aveeraragavan@g.ucla.edu
+ID: 004767663
+
+Project 0 - Warmup
+
+Included Files
+lab0.c
+- This is the C source code for the lab0 executable. It compiles cleanly with
+gcc and supports the options --input=filename, --output=filename, --segfault,
+and --catch.
+Makefile
+- This is the make file used to produce the lab0 executable among other things.
+make will produce the lab0 executable; make check will run a quick smoke-test on
+the executable; make clean will delete all files created by the Makefile
+including the executable; make dist will build the distribution tarball.
+backtrace.png
+- This is a screenshot of the gdb output when viewing the backtrace of the
+segmentation fault caused by the --segfault argument.
+breakpoint.png
+- This is a screenshot of the gdb output with a breakpoint at the bad assignment
+allowing us to confirm that the pointer is indeed NULL.
+
+Smoke-test Cases
+1) Check whether the program can copy STDIN to STDOUT
+2) Check whether the program can copy --input=filename to STDOUT
+3) Check whether the program can copy STDIN to --output=filename
+4) Check whether the program can copy --input=filename to --output=filename
+5) Check whether the program causes a segfault with --segfault
+6) Check whether the program catches a segfault with --segfault --catch
+7) Check whether the program reports an invalid --input=filename
+8) Check whether the program catches a segfault with all options selected
+
+Citations
+1) Anon.Retrieved September 29, 2017 from http://pubs.opengroup.org/onlinepubs/9699919799/
+
+2) Anon. Getopt. Retrieved September 29, 2017 from https://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Options.html
+
+3) Anon. Computer Programming And Technology For Dummies. Retrieved September 29, 2017 from http://see-programming.blogspot.com/2013/02/getoptlong.html
+
+4) Anon. Linux man pages. Retrieved September 29, 2017 from https://linux.die.net/man/
+
+Limitations
+1) The option parsing is not completely robust and certain invalid options used in specific ways
+can cause the executable to crash or exhibit strange behavior.
+
+2) The smoke-test run by the Makefile is not completely thorough and only covers core functionality.

@@ -1,0 +1,121 @@
+NAME: Anirudh Veeraragavan
+EMAIL: aveeraragavan@g.ucla.edu
+ID: 004767663
+
+Question 2.3.1
+- In 1 and 2-thread list tests there are only a few threads; therefore, not a
+  lot of time will be spent waiting for locks. The threads will be able to
+  spend most of their time actually executing, thus most of the cycles are
+  probably being spent in doing the actual list operations.
+- These are the most expensive parts of the code because they involve the most
+  operations on the linked list. Additionally since the threads will be able to
+  more or less run the operations as soon as they are called that means the CPU
+  usage will be the highest, leading to it being the most expensive part.
+- Most of the cycles in spin-lock tests will be spent waiting for the lock to
+  become free, especially as the number of threads increases. All of the waiting
+  threads are just going to be spinning at the lock waiting for it to free, thus
+  in reality only one thread is actually getting work done. This significantly
+  decreases your throughput.
+- In high-thread mutex tests a similar phenomenon occurs as most threads are
+  just waiting for the currently executing thread to finish. Thus most of a
+  thread's cycles are spent just waiting, and not doing anything.
+
+Question 2.3.2
+- The three lines of code that consume most of the cycles in order from most to
+  least are: 1) while(__sync_lock_test_and_set(&lock, 1));
+  	     2) SortedListElement_t* elem = SortedList_lookup(head, keys[j]);
+	     3) SortedList_insert(head, list_elements[i]);
+  Out of these three lines, the first line consumes significantly more cycles
+  than the other two.
+- This operation becomes very expensive because with a large number of threads
+  list contention occurs significantly more often as only one thread can
+  execute within the critical section. Thus all the other threads are going to
+  simply be spinning at this lock, which is a complete waste of CPU cycles. Thus
+  we see how the vast majority of threads are simply waiting at this one line of
+  code.
+
+Question 2.3.3
+- As the number of contending threads increases the number of threads that can
+  execute within the critical section remains at 1. Therefore you have a lot
+  more threads just waiting around for the lock to become free, and with more
+  waiting threads it takes longer for any given thread to actually access the
+  lock. Especially if you are the last thread in line, you may have to wait for
+  almost 16 other threads to finish before you, and this causes the wait time
+  to explode.
+- The actual time it takes to complete each operation (insert, length, lookup,
+  and delete) remains constant regardless of how many threads you may have.
+  Even though the time spent waiting for each thread adds to completion time,
+  this constant factor helps to balance that out leading to a slow, steady
+  increase in time per operation.
+- Completion time is measured from the parent thread whereas wait time is
+  measured by each individual thread. Since multiple threads each have their
+  own wait time, which all end up getting added together, this waiting time can
+  end up being greated than the completion time.
+
+Question 2.3.4
+- For both synchronization methods as the number of lists increases the
+  performances improves.
+- No, throughput will not continue increasing. Based off the graphs, the
+  performance benefit levels off once you starting having as many lists as
+  threads. This makes sense conceptually, so once you have the same number of
+  lists as threads, you will not see much additional benefit associated with
+  having more lists.
+- This is not true because having additional lists simply reduces a thread's
+  probability of having to wait for the critical section. Furthermore each list
+  is likely to be shorter therefore insertion and lookup would be happening
+  faster. Additionally there is a limit of how much benefit occurs from
+  increasing the number of threads.
+
+SortedList.h
+- A provided header file that describes the methods for linked list operations.
+
+SortedList.c
+- The source code that implements the functionality for the methods described in
+  SortedList.h.
+
+lab2_list.c
+- The source code for the lab2_list executable which tests multithreading
+  operations on a shared linked list and reports the results. The usage for the
+  executable is lab2_list [--threads=#] [--iterations=#] [--yield=[idl]]
+  [--sync=[ms]] [--lists=#].
+
+Makefile
+- Contains the following targets:
+  build: compiles lab2_list executable with -Wall and -Wextra options
+  tests: run all test cases to generate output for CSV file
+  profile: run profiling tool to generate profiling report
+  graphs: uses gnuplot to generate graphs from CSV file
+  dist: creates tarball
+  clean: delete all programs and output from Makefile
+
+lab2b_list.csv
+- Contains all the results from the test cases.
+
+profile.out
+- Execution profiling report generated from gperftools.
+
+lab2b_1.png
+- A graph that shows the throughput for various number of threads for different
+  synchronization methods.
+
+lab2b_2.png
+- A graph that shows the mutex wait time and time per operation for mutex
+  synchronization.
+
+lab2b_3.png
+- A graph that shows the number of threads and iterations required to generate
+  failure with yields for various synchronization methods (none, mutex, spin).
+
+lab2b_4.png
+- A graph that shows the throughput for various number of threads for various
+  number of lists for mutex sychronization.
+
+lab2b_5.png
+- A graph that shows the throughput for various number of threads for various
+  number of lists for spin-lock synchronization.
+
+lab2b.gp
+- Gnuplot script that generates all the graphs from the CSV file.
+
+README
+- The file you are currently reading.
